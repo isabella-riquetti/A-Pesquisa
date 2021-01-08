@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "A Pesquisa - Análise de Composição";
+    ViewBag.Description = "Uma ferramenta para analisar os componentes dos produtos para descobrir se são liberados ou proibidos para No Poo ou Low Poo.";
+    ViewBag.Canonical = "http://www.apesquisa.com.br/NoLowPoo";
+}
+
+<div class="breadcumb_area bg-img" style="background-image: url('../Content/img/brand/Cutted Background.png');">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="page-title text-center">
+                    <h1>Análise de composição</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="shop_grid_area section-padding-20-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Olá! Então você quer saber se seu produto é liberado? Ótimo! Você já está com a listagem de componentes em mãos? Então basta digitá-los abaixo. Clique no painel abaixo para mais instruções.
+                </p>
+                <ul class="instructions mb-30">
+                    <li>Nós usamos um modelo de exclusão, ou seja, verificamos se a fórmula contém algum componente NÃO permitido. Caso não contenha, logo classificamos a fórmula como liberada para No ou Low Poo.</li>
+                    <li>Usamos os separadores de ingredientes mais comumente encontrados com vírgula, ponto e vírgula e etc. Se encontrar algum componente agrupado no resultado, volte na  caixa de texto, inclua um ponto e vírgula como separadores e nos mande uma mensagem para podermos melhorar nossa ferramenta.</li>
+                </ul>
+            </div>
+            <div class="col-md-12 form-group">
+                <label for="components">Componentes:</label>
+                <textarea class="form-control" rows="5" name="components" id="components"></textarea>
+                <div class="cart-fav-box d-flex align-items-center mt-30">
+                    <button type="button" class="btn search-btn" onclick="Analise()" id="analisar">
+                        <img src="~/Content/img/brand/loading.gif" /><span>Analisar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="shop_grid_area" id="resultSection"></section>
+
+<script>
+    $("#analisar img").hide();
+
+    function Analise() {
+        var components = $("#components").val();
+        if (components == "" || components == undefined) {
+            alert("O campo componentes está vazio, precisamos de pelo menos um componente para analisar!")
+        }
+        else if (components.length > 1800) {
+            alert("Muitos componentes! Favor conferir se não estão duplicados. [Máximo: 1800 caracteres]")
+        }
+        else {
+            $("#analisar").css("disabled", true);
+            $("#analisar span").text("Analisando");
+            $("#analisar img").show();
+            $.ajax({
+                url: '/NoLowPoo/Analyse',
+                data: { components: components },
+                dataType: 'html',
+                success: function (data) {
+                    $('#resultSection').html(data);
+
+                    $("#analisar").css("disabled", false);
+                    $("#analisar span").text("Analisar");
+                    $("#analisar img").hide();
+
+                    $("html, body").animate({
+                        scrollTop: $(window).height()
+                    }, 1000);
+
+                }
+            });
+        }
+    }
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+<style>
+    #analisar img {
+        height: 60%;
+        margin-right: 10px;
+    }
+</style>

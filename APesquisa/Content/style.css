@@ -1,0 +1,179 @@
+
+/*Azul: #6e96db rgba(110, 150, 219, 1)
+Amarelo: #e8e482 rgba(232, 228, 130, 1)
+Laranja: #e7a585 rgba(231, 165, 133, 1)
+Verde: #86f1b0 rgba(134, 241, 176, 1)
+Roxo: #b688de rgba(182, 136, 222, 1)*/
+
+.big {
+    font-size: 20px;
+}
+
+.h-70 {
+    height: 70% !important;
+}
+
+.purple-text {
+    color: #b688de;
+}
+.blue-text {
+    color: #6e96db;
+}
+.orange-text {
+    color: #e7a585;
+}
+.green-text {
+    color: #86f1b0;
+}
+.yellow-text {
+    color: #e8e482;
+}
+
+.purple-background {
+    background-color: #b688de;
+}
+.blue-background {
+    background-color: #6e96db;
+}
+.orange-background {
+    background-color: #e7a585;
+}
+.green-background {
+    background-color: #86f1b0;
+}
+.yellow-background {
+    background-color: #e8e482;
+}
+
+
+.align-text-center {
+    text-align: center;
+}
+
+.component {
+    display: inline-block;
+}
+
+.known-component {
+    padding: 2px 4px 2px 4px;
+    margin-right: 1px;
+    border: 1px solid rgba(0, 0, 0, .3);
+    border-radius: 4px;
+}
+
+.allowed {
+    background: rgba(0,122,9,0.2);
+}
+
+.allowed-result {
+    color: darkgreen;
+}
+
+.allowed-description {
+    background: rgba(0,122,9,0.4);
+}
+
+.forbiddenForNoPoo {
+    background: rgba(255,161,24,0.2);
+}
+
+.forbiddenForNoPoo-result {
+    color: darkorange;
+}
+
+.forbiddenForNoPoo-description {
+    background: rgba(255,161,24,0.4);
+}
+
+.forbidden {
+    background: rgba(222,24,15,0.2);
+}
+
+.forbidden-result {
+    color: red;
+}
+
+.forbidden-description {
+    background: rgba(222,24,15,0.4);
+}
+
+.unknown {
+    background: rgba(237,237,237,0.2);
+}
+
+.result-text {
+    font-size: 16px;
+    text-align: center;
+}
+
+.legend-div {
+    float: left;
+    margin-right: 20px;
+}
+
+.result-formula {
+    font-size: medium;
+    font-family: Arial, 'Times New Roman'
+}
+
+.ballLegend {
+    border: 1px solid rgba(0, 0, 0, .5);
+    border-radius: 50%;
+    display: inline-block;
+    height: 14px;
+    width: 14px;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+h5, h6 {
+    font-size: 18px;
+    color: #e7a585;
+    margin-bottom: 10px;
+}
+
+h1, h3 {
+    color: #b582db;
+}
+
+h2, h4 {
+    color: #6e96db;
+}
+
+a {
+    color: #b582db;
+}
+
+b, strong {
+    font-weight: 600;
+}
+
+.search-btn {
+    display: inline-block;
+    min-width: 170px;
+    height: 50px;
+    color: #ffffff;
+    border: none;
+    border-radius: 0;
+    padding: 0 2%;
+    text-transform: uppercase;
+    font-size: 15px;
+    line-height: 50px;
+    background-color: #6e96db;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+
+    .search-btn:hover, .search-btn:focus {
+        color: #ffffff;
+        background-color: #b582db;
+    }
+
+label {
+    color: #6e96db;
+    font-weight: bold;
+}
+
+.instructions {
+    margin-left: 30px;
+}

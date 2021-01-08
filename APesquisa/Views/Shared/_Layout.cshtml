@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="pt" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="@ViewBag.Description">
+    <title>@ViewBag.Title</title>
+    <link rel="canonical" href="@ViewBag.Canonical" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="google-site-verification" content="2V1r9yhOqIKA4OZhps4aYsruC8kelXQsEawkN7mH0U4" />
+    <link rel="icon" href="~/Content/img/Icon.ico">
+
+    @Styles.Render("~/Content/css/bootstrap.min.css")
+    @Styles.Render("~/Content/css/classy-nav.min.css")
+    @Styles.Render("~/Content/css/owl.carousel.css")
+    @Styles.Render("~/Content/css/magnific-popup.css")
+    @Styles.Render("~/Content/css/animate.css")
+    @Styles.Render("~/Content/css/jquery-ui.min.css")
+    @Styles.Render("~/Content/css/nice-select.css")
+    @Styles.Render("~/Content/css/font-awesome.min.css")
+    @Styles.Render("~/Content/css/core-style.min.css")
+    @Styles.Render("~/Content/style.css")
+    @Styles.Render("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Ubuntu:300,400,500,700")
+    @Scripts.Render("~/Content/js/jquery/jquery-2.2.4.min.js")
+    @Scripts.Render("~/Content/js/popper.min.js")
+</head>
+
+<body class="h-100">
+    <header class="header_area">
+        <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
+            <nav class="classy-navbar" id="essenceNav">
+                <a class="nav-brand" href="@Url.Action("Index", "Home")">
+                    <img src="~/Content/img/brand/Logo-h50.png" alt="Logo A Pesquisa" />
+                </a>
+                <div class="classy-navbar-toggler">
+                    <span class="navbarToggler"><span></span><span></span><span></span></span>
+                </div>
+                <div class="classy-menu">
+                    <div class="classycloseIcon">
+                        <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                    </div>
+                    <div class="classynav">
+                        <ul>
+                            <li>
+                                <a href="#">No Poo e Low Poo</a>
+                                <ul class="dropdown">
+                                    <li>
+                                        @Html.ActionLink("O que é?", "OQueE", "NoLowPoo")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Componentes", "ListaDeComponentes", "NoLowPoo")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Analise de Composição", "Index", "NoLowPoo")
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Vegano</a>
+                                <ul class="dropdown">
+                                    <li>
+                                        @Html.ActionLink("Em Breve", "Index", "Vegano")
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="header-meta d-flex clearfix justify-content-end">
+                <div class="cart-area">
+                    <a href="@Url.Action("Index", "Ajuda")" id="help"><i class="far fa-envelope fa-1-5x purple-text"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    @Scripts.Render("~/Content/js/bootstrap.min.js")
+    @Scripts.Render("~/Content/js/plugins.js")
+    @Scripts.Render("~/Content/js/classy-nav.min.js")
+    @Scripts.Render("~/Content/js/active.js")
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136819937-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-136819937-1');
+    </script>
+</body>
+</html>

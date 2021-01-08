@@ -1,0 +1,82 @@
+﻿@model IEnumerable<APesquisa.Data.Models.Component>
+@{
+    ViewBag.Title = "A Pesquisa - Componentes liberados e proibidos";
+    ViewBag.Description = "Uma listagem de componentes liberados e proibidos para as técnicas de No Poo e Low Poo.";
+    ViewBag.Canonical = "http://www.apesquisa.com.br/NoLowPoo/ListaDeComponentes";
+}
+
+@Styles.Render("~/Content/css/dataTables.bootstrap4.min.css")
+<section class="shop_grid_area section-padding-20-80">
+    <div class="container">
+        <table class="table table-striped table-bordered" style="width:100%" id="componentList">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Low Poo</th>
+                    <th scope="col">No Poo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var component in Model)
+                {
+                    <tr>
+                        <td>@component.Name</td>
+                        <td>@component.Type</td>
+                        <td class="align-text-center">
+                            @if (component.AllowedLowPoo == true)
+                            {
+                                <i class="fa fa-check text-success"></i>
+                            }
+                            else if (component.Prohibited == true)
+                            {
+                                <i class="fa fa-ban text-danger"></i>
+                            }
+                        </td>
+                        <td class="align-text-center">
+                            @if (component.AllowedNoPoo == true)
+                            {
+                                <i class="fa fa-check text-success"></i>
+                            }
+                            else if (component.Prohibited == true)
+                            {
+                                <i class="fa fa-ban text-danger"></i>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+@Scripts.Render("~/Content/js/jquery.dataTables.min.js")
+@Scripts.Render("~/Content/js/dataTables.bootstrap4.min.js")
+<script>
+    $(document).ready(function () {
+        $('table').DataTable({
+            "language": {
+                "lengthMenu": "Exibindo _MENU_ registro por página",
+                "zeroRecords": "Desculpe, nada encontrado",
+                "info": "Exibindo _START_ a _END_ de _TOTAL_ itens",
+                "infoEmpty": "Nenhum dado disponível",
+                "paginate": {
+                    "first": "Primeiro",
+                    "last": "Último",
+                    "next": "Próxima",
+                    "previous": "Anterior"
+                },
+                "search": "Buscar:"
+            }
+        });
+    });
+</script>
+<style>
+
+    .allowed-check {
+        max-height: 15px;
+    }
+
+    th {
+        text-align: center;
+    }
+</style>

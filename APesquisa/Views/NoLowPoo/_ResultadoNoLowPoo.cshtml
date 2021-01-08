@@ -1,0 +1,98 @@
+﻿@model APesquisa.Models.FormulaAnalysisResult
+
+<div class="breadcumb_area bg-img" style="background-image: url('../Content/img/brand/Cutted Background.png');">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="page-title text-center">
+                    <h2>Resultado</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-30 mb-100">
+    <div class="row">
+        <div class="col-md-12 result-text">
+            <h3>Olá, </h3>Demos uma olhadinha na fórmula que você nos mandou e olha o que descobrimos:<br />
+            Seu produto é
+            @if (Model.Type == APesquisa.Models.Enum.PooType.Forbidden)
+            {
+                <span class="forbidden-result"><strong class="big">PROIBIDO</strong></span>
+                <span> para ambas as técnicas de Low e de No Poo.</span>
+                <p>
+                    É uma pena que você não possa utilizar ele, mas destacamos aqui alguns produtos. <br />
+                    Leia a legenda e poderá entender direitinho o que cada cor de componente quer dizer :)
+                </p>
+            }
+            @if (Model.Type == APesquisa.Models.Enum.PooType.AllowedForLowPoo)
+            {
+                <span>liberado apenas para </span><span class="forbiddenForNoPoo-result"><strong class="big">LOW POO</strong></span>
+                <p>
+                    Se quiser entender mais sobre as técnicas clique <a href="@Url.Action("OQueE", "NoLowPoo")" target="_blank">aqui.</a><br />
+                    Alguns componentes devem estar destacados com cores diferentes, para entender o que as cores querem dizer basta <br />
+                    dar uma olhada na legenda abaixo e poderá entender direitinho o que cada cor de componente quer dizer :)
+                </p>
+            }
+            @if (Model.Type == APesquisa.Models.Enum.PooType.AllowedForBoth)
+            {
+                <span>liberado para </span><span class="allowed-result"><strong class="big">No e Low POO</strong></span>
+                <p>
+                    Se quiser entender mais sobre as técnicas clique <a href="@Url.Action("OQueE", "NoLowPoo")" target="_blank">aqui.</a><br />
+                    Alguns componentes podem estar destacados com cores diferentes, se este for o caso e você quiser saber o motivo
+                    <br /> destas cores diferentes, basta dar uma olhada na legenda abaixo e poderá entender direitinho o que cada cor de componente quer dizer :)
+                </p>
+            }
+        </div>
+        <div class="col-10 col-md-10 col-lg-10" style="margin-left: 30%">
+            <div class="legend-div">
+                <div class="ballLegend forbiddenForNoPoo-description"></div>
+                <span>Permitido somente para Low Poo</span>
+            </div>
+            <div class="legend-div">
+                <div class="ballLegend forbidden-description"></div>
+                <span>Proibido para ambas as técnicas</span>
+            </div>
+        </div>
+        <div class="col-md-12 result-formula mt-30" style="line-height: 20pt">
+            <h2>Componentes:</h2>
+            @foreach (var component in Model.ComponentsData)
+            {
+                var classType = "known-component ";
+                if (component.PooType == APesquisa.Models.Enum.ComponentPooType.AllowedLowPooForbidenNoPoo)
+                {
+                    classType += "forbiddenForNoPoo font-bold";
+                }
+                else if (component.PooType == APesquisa.Models.Enum.ComponentPooType.ForbiddenBoth)
+                {
+                    classType += "forbidden font-bold";
+                }
+                else if (component.PooType == APesquisa.Models.Enum.ComponentPooType.Unknown || component.PooType == APesquisa.Models.Enum.ComponentPooType.AllowedBoth)
+                {
+                    classType += "unknown";
+                }
+                <span class="component" data-toggle="tooltip" title="@component.ComponentType"><span class="@classType">@component.Name</span></span>
+            }
+        </div>
+        <div class="col-md-12 result-text mt-30">
+            @if (Model.Type == APesquisa.Models.Enum.PooType.AllowedForLowPoo)
+            {
+                <img src="~/Content/img/brand/LowPoo-100.png" />
+            }
+            @if (Model.Type == APesquisa.Models.Enum.PooType.AllowedForBoth)
+            {
+                <img src="~/Content/img/brand/NoPoo-100.png" />
+            }
+            @if (Model.Type == APesquisa.Models.Enum.PooType.Forbidden)
+            {
+                <img src="~/Content/img/brand/Forbidden-100.png" />
+            }
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+</script>
